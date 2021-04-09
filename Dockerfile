@@ -22,6 +22,7 @@ RUN apt update && \
                       libboost-program-options1.58.0 \
                       libboost-regex1.58.0 \
                       libboost-system1.58.0 \
+                       wget curl bzip2 ca-certificates gnupg2 squashfs-tools git \
                       libboost-log1.58.0 && \
     cd /tmp &&\
     wget -q https://mirror.oxfordnanoportal.com/software/analysis/ont_guppy_${PACKAGE_VERSION}-1~xenial_amd64.deb && \
@@ -32,7 +33,6 @@ RUN apt update && \
     ENV PATH /opt/conda/bin:${PATH}
     ENV LANG C.UTF-8
     ENV SHELL /bin/bash
-    RUN install_packages wget curl bzip2 ca-certificates gnupg2 squashfs-tools git
     RUN /bin/bash -c "curl -L https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh > miniconda.sh && \
         bash miniconda.sh -b -p /opt/conda && \
         rm miniconda.sh"
