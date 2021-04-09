@@ -1,4 +1,5 @@
 FROM nvidia/cuda:9.0-cudnn7-devel-ubuntu16.04
+FROM snakemake/snakemake:v6.1.1
 
 
 # File Author / Maintainer
