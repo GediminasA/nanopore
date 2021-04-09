@@ -1,5 +1,4 @@
 FROM nvidia/cuda:9.0-cudnn7-devel-ubuntu16.04
-FROM snakemake/snakemake:v6.1.1
 
 
 # File Author / Maintainer
@@ -27,7 +26,23 @@ RUN apt update && \
     cd /tmp &&\
     wget -q https://mirror.oxfordnanoportal.com/software/analysis/ont_guppy_${PACKAGE_VERSION}-1~xenial_amd64.deb && \
     dpkg -i --ignore-depends=nvidia-384,libcuda1-384 /tmp/ont_guppy_${PACKAGE_VERSION}-1~xenial_amd64.deb && \
-    rm *.deb && \
-    apt-get autoremove --purge --yes && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+    rm *.deb &&
+    ADD . /tmp/repo
+    WORKDIR /tmp/repo
+    ENV PATH /opt/conda/bin:${PATH}
+    ENV LANG C.UTF-8
+    ENV SHELL /bin/bash
+    RUN install_packages wget curl bzip2 ca-certificates gnupg2 squashfs-tools git
+    RUN /bin/bash -c "curl -L https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh > miniconda.sh && \
+        bash miniconda.sh -b -p /opt/conda && \
+        rm miniconda.sh"
+    RUN /bin/bash -c "conda install -y -c conda-forge mamba && \
+        mamba create -q -y -c conda-forge -c bioconda -n snakemake snakemake snakemake-minimal --only-deps && \
+        source activate snakemake && \
+        mamba install -q -y -c conda-forge singularity && \
+        conda clean --all -y && \
+        which python && \
+        pip install .[reports,messaging,google-cloud]"
+    RUN echo "source activate snakemake" > ~/.bashrc
+    ENV PATH /opt/conda/envs/snakemake/bin:${PATH}
+
