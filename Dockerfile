@@ -42,7 +42,7 @@ RUN apt update && \
         mamba install -q -y -c conda-forge singularity && \
         conda clean --all -y && \
         which python && \
-        pip install .[reports,messaging,google-cloud]"
+        pip install reports messaging google-cloud "
     RUN echo "source activate snakemake" > ~/.bashrc
     ENV PATH /opt/conda/envs/snakemake/bin:${PATH}
 
