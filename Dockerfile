@@ -26,7 +26,7 @@ RUN apt update && \
     cd /tmp &&\
     wget -q https://mirror.oxfordnanoportal.com/software/analysis/ont_guppy_${PACKAGE_VERSION}-1~xenial_amd64.deb && \
     dpkg -i --ignore-depends=nvidia-384,libcuda1-384 /tmp/ont_guppy_${PACKAGE_VERSION}-1~xenial_amd64.deb && \
-    rm *.deb &&
+    rm *.deb
     ADD . /tmp/repo
     WORKDIR /tmp/repo
     ENV PATH /opt/conda/bin:${PATH}
