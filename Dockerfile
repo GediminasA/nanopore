@@ -18,15 +18,18 @@ apt-get -y  update  && \
 apt-get -y update && \
 apt-get -y install ont-guppy
 
-RUN apt-get -y install curl
-RUN curl -L https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh > miniconda.sh && \
-    ./miniconda.sh -b -p /opt/conda && \
+RUN apt-get -y install curl && \
+    curl -L https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh > miniconda.sh && \
+    bash miniconda.sh -b -&& \
     rm miniconda.sh && \
-    which conda
-    
-RUN conda install -y -c conda-forge mamba && \
+    /root/miniconda3/bin/conda init bash && \
+    source /root/.bashrc  && \
+    conda install -y -c conda-forge mamba && \
     mamba create -q -y -c conda-forge -c bioconda -n snakemake snakemake snakemake-minimal  && \
     source activate snakemake && \
     mamba install -q -y -c conda-forge singularity && \
-    conda clean --all -y && \
-    which python 
+    which python &&\
+    pip install reports messaging google-cloud &&\
+    
+RUN echo "conda activate snakemake" > ~/.bashrc
+ENV PATH /root/miniconda3/envs/snakemake/bin/:${PATH}
