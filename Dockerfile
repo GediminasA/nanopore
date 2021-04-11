@@ -26,9 +26,7 @@ RUN apt-get -y install curl && \
     rm miniconda.sh && \
     /root/miniconda3/bin/conda init bash && \
     echo "Conda1:" && \ 
-    which conda
-RUN echo Conda1: && \ 
-    which conda
+    conda --help
     
    
    
