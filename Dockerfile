@@ -14,8 +14,8 @@ apt-get -y install wget lsb-release && \
 export PLATFORM=$(lsb_release -cs) && \
 wget -O- https://mirror.oxfordnanoportal.com/apt/ont-repo.pub | apt-key add -  && \
 echo "deb http://mirror.oxfordnanoportal.com/apt ${PLATFORM}-stable non-free" | tee /etc/apt/sources.list.d/nanoporetech.sources.list  && \
-sudo apt-get -y  update  && \
-sudo apt-get -y update && \
-sudo apt-get -y install ont-guppy
+apt-get -y  update  && \
+apt-get -y update && \
+apt-get -y install ont-guppy
 
 
