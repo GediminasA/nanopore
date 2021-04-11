@@ -28,8 +28,12 @@ RUN apt-get -y install curl && \
     /root/miniconda3/bin/conda init bash && \
     echo "Conda1:" 
 
-RUN  readlink -f /proc/$$/exe
-RUN  conda --help
+RUN conda install -y -c conda-forge mamba && \
+    mamba create -q -y -c conda-forge -c bioconda -n snakemake snakemake snakemake-minimal  && \
+    source activate snakemake && \
+    mamba install -q -y -c conda-forge singularity && \
+    which python &&\
+    pip install reports messaging google-cloud
     
    
    
