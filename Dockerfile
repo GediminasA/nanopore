@@ -32,8 +32,11 @@ RUN conda install -y -c conda-forge mamba && \
     mamba create -q -y -c conda-forge -c bioconda -n snakemake snakemake snakemake-minimal  && \
     source activate snakemake && \
     mamba install -q -y -c conda-forge singularity && \
-    which python &&\
+    which python && \
     pip install reports messaging google-cloud
+
+RUN echo "conda activate snakemake" >> /root/.bashrc
+ENV PATH /root/miniconda3/envs/snakemake/bin:${PATH}
     
    
    
