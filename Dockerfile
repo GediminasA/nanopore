@@ -1,4 +1,6 @@
 FROM nvidia/cuda:11.2.2-cudnn8-devel-ubuntu18.04
+RUN ln -sf /bin/bash /bin/sh
+
 
 
 # File Author / Maintainer
