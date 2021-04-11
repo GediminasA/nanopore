@@ -1,7 +1,8 @@
 FROM nvidia/cuda:11.2.2-cudnn8-devel-ubuntu18.04
 RUN ln -sf /bin/bash /bin/sh
-
-
+ENV PATH /root/miniconda3/bin:${PATH}
+ENV LANG C.UTF-8
+ENV SHELL /bin/bash
 
 # File Author / Maintainer
 MAINTAINER Laurent Jourdren <jourdren@biologie.ens.fr>
@@ -27,6 +28,7 @@ RUN apt-get -y install curl && \
     /root/miniconda3/bin/conda init bash && \
     echo "Conda1:" 
 
+RUN  readlink -f /proc/$$/exe
 RUN  conda --help
     
    
