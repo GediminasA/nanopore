@@ -18,4 +18,9 @@ apt-get -y  update  && \
 apt-get -y update && \
 apt-get -y install ont-guppy
 
+RUN apt-get -y  curl
+RUN curl -L https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh > miniconda.sh && \
+    bash miniconda.sh -b -p /opt/conda && \
+    rm miniconda.sh
+
 
