@@ -25,13 +25,12 @@ RUN apt-get -y install curl && \
     bash miniconda.sh -b -&& \
     rm miniconda.sh && \
     /root/miniconda3/bin/conda init bash && \
-    source /root/.bashrc  && \
-    conda install -y -c conda-forge mamba && \
-    mamba create -q -y -c conda-forge -c bioconda -n snakemake snakemake snakemake-minimal  && \
-    source activate snakemake && \
-    mamba install -q -y -c conda-forge singularity && \
-    which python &&\
-    pip install reports messaging google-cloud &&\
+    echo "Conda1:" && \ 
+    which conda
+RUN echo Conda1: && \ 
+    which conda
     
-RUN echo "conda activate snakemake" > ~/.bashrc
-ENV PATH /root/miniconda3/envs/snakemake/bin/:${PATH}
+   
+   
+    
+
