@@ -22,3 +22,10 @@ RUN apt-get -y install curl
 RUN curl -L https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh > miniconda.sh && \
     bash miniconda.sh -b -p /opt/conda && \
     rm miniconda.sh
+    
+RUN conda install -y -c conda-forge mamba && \
+    mamba create -q -y -c conda-forge -c bioconda -n snakemake snakemake snakemake-minimal  && \
+    source activate snakemake && \
+    mamba install -q -y -c conda-forge singularity && \
+    conda clean --all -y && \
+    which python 
