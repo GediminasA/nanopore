@@ -31,9 +31,9 @@ RUN apt-get -y install curl && \
 RUN conda install -y -c conda-forge mamba && \
     mamba create -q -y -c conda-forge -c bioconda -n snakemake snakemake snakemake-minimal  && \
     source activate snakemake && \
-    mamba install -y -c conda-forge singularity pandas=0.25.3 && \
+    mamba install -y -c conda-forge singularity && \
     pip install reports messaging google-cloud && \
-    mamba install -y -c conda-forge -c bioconda -c defaults artic=1.2.1 artic-network::rampart=1.2.0 qualimap multiqc samtools
+    mamba install -y -c bioconda -c conda-forge artic=1.2.1 artic-network::rampart=1.2.0 qualimap multiqc samtools
 
 RUN echo "conda activate snakemake" >> /root/.bashrc
 ENV PATH /root/miniconda3/envs/snakemake/bin:${PATH}
