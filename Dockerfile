@@ -32,6 +32,7 @@ RUN conda install -y -c conda-forge mamba && \
     mamba create -q -y -c conda-forge -c bioconda -n snakemake snakemake snakemake-minimal  && \
     source activate snakemake && \
     mamba install -q -y -c conda-forge singularity && \
+    mamba install -y -c conda-forge -c bioconda -c defaults artic=1.2.1 artic-network::rampart=1.2.0 && \
     which python && \
     pip install reports messaging google-cloud
 
