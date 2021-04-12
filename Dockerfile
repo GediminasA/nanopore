@@ -33,7 +33,7 @@ RUN conda install -y -c conda-forge mamba && \
     source activate snakemake && \
     mamba install -y -c conda-forge singularity && \
     pip install reports messaging google-cloud && \
-    mamba install -y -c bioconda -c conda-forge artic=1.2.1 artic-network::rampart=1.2.0 qualimap multiqc samtools
+    mamba install -y -c bioconda -c conda-forge  qualimap multiqc samtools
 
 RUN echo "conda activate snakemake" >> /root/.bashrc
 ENV PATH /root/miniconda3/envs/snakemake/bin:${PATH}
