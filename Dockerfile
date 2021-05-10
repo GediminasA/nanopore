@@ -37,7 +37,20 @@ RUN conda install -y -c conda-forge mamba && \
 
 RUN echo "conda activate snakemake" >> /root/.bashrc
 ENV PATH /root/miniconda3/envs/snakemake/bin:${PATH}
-    
+
+#NVIDIA
+rm -f /etc/apt/sources.list.d/cuda* &&\
+apt remove --autoremove nvidia-cuda-toolkit &&\
+apt remove --autoremove nvidia-* &&\
+ apt update  && \
+ add-apt-repository ppa:graphics-drivers && \
+ 
+ apt-key adv --fetch-keys  http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/7fa2af80.pub && \
+ bash -c 'echo "deb http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64 /" > /etc/apt/sources.list.d/cuda.list' && \
+ bash -c 'echo "deb http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1804/x86_64 /" > /etc/apt/sources.list.d/cuda_learn.list' && \
+  apt update  && \
+apt install cuda-10-1 && \
+apt install libcudnn7 
    
    
     
