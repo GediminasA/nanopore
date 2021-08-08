@@ -48,6 +48,11 @@ sudo bash -c 'echo "deb http://developer.download.nvidia.com/compute/cuda/repos/
 sudo bash -c 'echo "deb http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu2004/x86_64 /" > /etc/apt/sources.list.d/cuda_learn.list' && \
 sudo apt install cuda-11-4 && \
 sudo apt install libcudnn8
+
+#sudo parted /dev/sda --script mklabel gpt mkpart xfspart xfs 0% 100%
+#sudo mkfs.xfs /dev/sda1
+#sudo partprobe /dev/sda1
+sudo mount /dev/sda1 /mnt
    
    
     
