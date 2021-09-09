@@ -50,6 +50,7 @@ sudo apt update && \
 sudo apt install cuda-11-4 && \
 sudo apt install libcudnn8
 
+# lsblk -o NAME,HCTL,SIZE,MOUNTPOINT | grep -i "sd"
 #sudo parted /dev/sda --script mklabel gpt mkpart xfspart xfs 0% 100%
 #sudo mkfs.xfs /dev/sda1
 #sudo partprobe /dev/sda1
