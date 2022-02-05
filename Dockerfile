@@ -51,10 +51,17 @@ sudo apt install cuda-11-4 && \
 sudo apt install libcudnn8
 
 # lsblk -o NAME,HCTL,SIZE,MOUNTPOINT | grep -i "sd"
-#sudo parted /dev/sda --script mklabel gpt mkpart xfspart xfs 0% 100%
-#sudo mkfs.xfs /dev/sda1
-#sudo partprobe /dev/sda1
-sudo mount /dev/sda1 /mnt
+#sudo parted /dev/sdc --script mklabel gpt mkpart xfspart xfs 0% 100%
+#sudo mkfs.xfs /dev/sdc1
+#sudo partprobe /dev/sdc1
+sudo mount /dev/sdc1 /mnt
+#fast5_dir=../data/covid_v1_2022-02-02/1/20220202_1725_MN39294_FAR83133_547ef4a0/fast5_pass 
+#fastq_dr_out=0203_fastq_calls 
+#sample_sheet=samplesheet0203.csv 
+#results_dr=0203_rez
+## rm -r $fastq_dr_out  $results_dr
+#guppy_basecaller -r  -i $fast5_dir  -s $fastq_dr_out  --flowcell FLO-MIN106 --kit SQK-LSK109 -x "cuda:0" --gpu_runners_per_device 8 --num_callers 8 --chunks_per_runner 1024 --barcode_kits "SQK-RBK110-96" --trim_barcodes #&& \
+##nextflow run epi2me-labs/wf-artic --out_dir $results_dr  --sample_sheet $sample_sheet    -profile conda --fastq $fastq_dr_out/pass  --threads 20  --scheme_name SARS-CoV-2  --scheme_version V1200 –-min_len 200 –-max_len 1100 --medaka_model r941_min_fast_variant_g507 # r941_min_fast_variant_g507   
    
    
     
