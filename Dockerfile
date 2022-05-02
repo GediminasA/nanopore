@@ -62,7 +62,8 @@ sudo mount /dev/sdc1 /mnt
 ## rm -r $fastq_dr_out  $results_dr
 #guppy_basecaller -r  -i $fast5_dir  -s $fastq_dr_out  --flowcell FLO-MIN106 --kit SQK-LSK109 -x "cuda:0" --gpu_runners_per_device 8 --num_callers 8 --chunks_per_runner 1024 --barcode_kits "SQK-RBK110-96" --trim_barcodes #&& \
 ##nextflow run epi2me-labs/wf-artic --out_dir $results_dr  --sample_sheet $sample_sheet    -profile conda --fastq $fastq_dr_out/pass  --threads 20  --scheme_name SARS-CoV-2  --scheme_version V1200 –-min_len 200 –-max_len 1100 --medaka_model r941_min_fast_variant_g507 # r941_min_fast_variant_g507   
-   
+# azure going crazy with bew nvidia versions...
+sudo apt install  --fix-broken # before going further
 guppy_basecaller -r  -i m7_in  -s m7_out  --flowcell FLO-MIN106 --kit SQK-LSK109 -x "cuda:0" --gpu_runners_per_device 8 --num_callers 8 --chunks_per_runner 16014 --chunk_size 201 --barcode_kits "SQK-RBK110-96" --trim_barcodes
    
     
